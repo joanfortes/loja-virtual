@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "1057494725473",
+    "firebase_url": "https://loja-virtual-8728b.firebaseio.com",
+    "project_id": "loja-virtual-8728b",
+    "storage_bucket": "loja-virtual-8728b.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:1057494725473:android:db2538ebcfa5a904e54b20",
+        "android_client_info": {
+          "package_name": "br.com.fortes.loja_virtual"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "1057494725473-k41dhgcr0u6mi0pjlmv9hu4081cg1klf.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyC9a3UJoEc1wo6_61b2T9YwWalmZenOvdA"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "1057494725473-k41dhgcr0u6mi0pjlmv9hu4081cg1klf.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
