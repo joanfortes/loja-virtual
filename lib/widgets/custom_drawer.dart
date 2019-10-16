@@ -1,5 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:loja_virtual/models/user_model.dart';
+import 'package:loja_virtual/screens/login_screen.dart';
 import 'package:loja_virtual/tile/drawer_tile.dart';
+import 'package:scoped_model/scoped_model.dart';
 
 class CustomDrawer extends StatelessWidget {
 
@@ -13,10 +16,11 @@ class CustomDrawer extends StatelessWidget {
           Container(
             decoration: BoxDecoration(
                 gradient: LinearGradient(colors: [
-                  Color.fromARGB(255, 211, 110, 130),
-                  Color.fromARGB(255, 253, 181, 160)
+                  Color.fromARGB(255, 94, 231, 223),
+                  Color.fromARGB(255, 180, 144, 202)
                 ], begin: Alignment.topCenter, end: Alignment.bottomCenter)),
           );
+
 
       return Drawer(
         child: Stack(
@@ -35,29 +39,39 @@ class CustomDrawer extends StatelessWidget {
                         top: 8.0,
                         left: 0,
                         child: Text("Flutter's \nClothing",
-                        style: TextStyle(fontSize: 34.0,fontWeight: FontWeight.bold),
+                        style: TextStyle(fontSize: 34.0,fontWeight: FontWeight.bold,),
                         ),
                       ),
                       Positioned(
                         left: 0.0,
                         bottom: 0.0,
-                        child: Column(
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          children: <Widget>[
-                            Text("Olá,",
-                            style: TextStyle(fontSize: 18.0,fontWeight: FontWeight.bold),
-                            ),
-                            GestureDetector(
-                              child: Text("Entre ou cadastre-se >",
-                                style: TextStyle(
-                                    color: Theme.of(context).primaryColor,
-                                    fontSize: 18.0,
-                                    fontWeight: FontWeight.bold),
-                              ),
-                              onTap: (){},
-                            )
-                          ],
-                        ),
+                        child: ScopedModelDescendant<UserModel>(
+                          builder: (context,child,model){
+                            return Column(
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                              children: <Widget>[
+                                Text("Olá,${!model.isLoggedIn() ? "": model.userData["name"]}",
+                                  style: TextStyle(fontSize: 18.0,fontWeight: FontWeight.bold,),
+                                ),
+                                GestureDetector( 
+                                  child: Text(!model.isLoggedIn() ?
+                                    "Entre ou cadastre-se >": "Sair",
+                                    style: TextStyle(
+                                        color: Color.fromARGB(255, 26,0,164),
+                                        fontSize: 18.0,
+                                        fontWeight: FontWeight.bold),
+                                  ),
+                                  onTap: (){
+                                    if(!model.isLoggedIn())
+                                    Navigator.of(context).push(MaterialPageRoute(builder: (context)=>LoginScreen()));
+                                    else
+                                      model.signOut();
+                                  },
+                                )
+                              ],
+                            );
+                          },
+                        )
                       )
                     ],
                   ),
