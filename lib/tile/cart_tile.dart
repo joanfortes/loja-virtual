@@ -12,8 +12,10 @@ class CartTile extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+
     Widget _buildContent(){
       CartModel.of(context).updatePrices();
+
       return Row(
         mainAxisAlignment: MainAxisAlignment.start,
         children: <Widget>[
@@ -26,57 +28,59 @@ class CartTile extends StatelessWidget {
             ),
           ),
           Expanded(
-              child: Container(
-                padding: EdgeInsets.all(8.0),
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  children: <Widget>[
-                    Text(
-                      "${cartProduct.productData.title}",
-                      style: TextStyle(fontWeight: FontWeight.w500, fontSize: 17.0
-                      ),
-                    ),
-                    Text("Tamanho : ${cartProduct.size}",
+            child: Container(
+              padding: EdgeInsets.all(8.0),
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: <Widget>[
+                  Text(
+                    cartProduct.productData.title,
+                    style: TextStyle(fontWeight: FontWeight.w500, fontSize: 17.0),
+                  ),
+                  Text(
+                    "Tamanho: ${cartProduct.size}",
                     style: TextStyle(fontWeight: FontWeight.w300),
-                    ),
-                    Text("R\$ ${cartProduct.productData.price.toStringAsFixed(2)}",
+                  ),
+                  Text(
+                    "R\$ ${cartProduct.productData.price.toStringAsFixed(2)}",
                     style: TextStyle(
-                      color: Theme.of(context).primaryColor,
-                      fontSize: 16.0,
-                      fontWeight: FontWeight.bold
+                        color: Theme.of(context).primaryColor,
+                        fontSize: 16.0,
+                        fontWeight: FontWeight.bold
                     ),
-                    ),
-                    Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                      children: <Widget>[
-                        IconButton(
-                          icon: Icon(Icons.remove),
-                          color: Theme.of(context).primaryColor,
-                          onPressed: cartProduct.quantity > 1 ? (){
-                            CartModel.of(context).decProduct(cartProduct);
-                          } : null,
-                            ),
-                        Text(cartProduct.quantity.toString()),
-                        IconButton(
-                          icon: Icon(Icons.add),
-                          color: Theme.of(context).primaryColor,
-                          onPressed: (){
-                            CartModel.of(context).incProduct(cartProduct);
-                          },
-                        ),
-                        FlatButton(
-                          child: Text("Remover"),
-                          textColor: Colors.grey[500],
-                          onPressed: (){
-                            CartModel.of(context).removeCartItem(cartProduct);
-                          },
-                        )
-                      ],
-                    )
-                  ],
-                ),
-              ) ,
+                  ),
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                    children: <Widget>[
+                      IconButton(
+                        icon: Icon(Icons.remove),
+                        color: Theme.of(context).primaryColor,
+                        onPressed: cartProduct.quantity > 1 ?
+                            (){
+                          CartModel.of(context).decProduct(cartProduct);
+                        } : null,
+                      ),
+                      Text(cartProduct.quantity.toString()),
+                      IconButton(
+                        icon: Icon(Icons.add),
+                        color: Theme.of(context).primaryColor,
+                        onPressed: (){
+                          CartModel.of(context).incProduct(cartProduct);
+                        },
+                      ),
+                      FlatButton(
+                        child: Text("Remover"),
+                        textColor: Colors.grey[500],
+                        onPressed: (){
+                          CartModel.of(context).removeCartItem(cartProduct);
+                        },
+                      )
+                    ],
+                  )
+                ],
+              ),
+            ),
           )
         ],
       );
