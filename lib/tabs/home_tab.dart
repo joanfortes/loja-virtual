@@ -58,7 +58,7 @@ class HomeTab extends StatelessWidget {
                       (doc){
                         return FadeInImage.memoryNetwork(
                           placeholder: kTransparentImage,
-                          image: doc.data["img"],
+                          image: doc.data["image"],
                           fit: BoxFit.cover,
                         );
                       }
